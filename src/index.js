@@ -1,5 +1,8 @@
 // import discord.js
-import {Client, Events, GatewayIntentBits, Partials} from 'discord.js';
+import {Client, Events, GatewayIntentBits, Partials, EmbedBuilder} from 'discord.js';
+
+//Commands
+import { meme } from './commands/users/meme-generator.js';
 
 // create a new Client instance
 const client = new Client({
@@ -19,9 +22,17 @@ client.once(Events.ClientReady, (c) => {
 // listen for messages
 client.setMaxListeners(0);
 
-client.on('messageCreate', async (message) => {
-   console.log(message.content);
-     
+
+client.on('interactionCreate', async (interaction) => {
+   if (!interaction.isChatInputCommand()) return;
+   
+   if(interaction.commandName === 'ping') {
+       await interaction.reply('Pong!');
+   }
+
+   if(interaction.commandName === 'meme'){
+      await meme(interaction);
+   }
 });
 
 // login with the token from .env.local
