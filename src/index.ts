@@ -1,4 +1,6 @@
-import { Client, IntentsBitField } from 'discord.js';
+import { Client, IntentsBitField, Partials } from 'discord.js';
+import { meme } from './commands/meme-generator';
+
 
 const client = new Client({
     intents: [
@@ -7,6 +9,11 @@ const client = new Client({
         IntentsBitField.Flags.GuildMessages,
         IntentsBitField.Flags.MessageContent,
     ],
+    partials: [
+        Partials.GuildMember,
+        Partials.Message,
+        Partials.User,
+    ]
 });
 
 client.on('ready', (c) => {
@@ -23,15 +30,10 @@ client.on('messageCreate', (message) => {
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isCommand()) return;
 
-    if (interaction.commandName === 'add') {
-        
-        const firstNumber = interaction.options.get('first-number', true).value as number;
-        const secondNumber = interaction.options.get('second-number', true).value as number;
-
-        interaction.reply(`The sum is ${firstNumber + secondNumber}`);
-    }
+    if ( interaction.commandName === 'meme') {
+        meme(interaction);
+    };
     
-
 });
 
 client.login(Bun.env.TOKEN);

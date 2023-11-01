@@ -1,24 +1,10 @@
-import { REST, Routes, ApplicationCommandOptionType } from 'discord.js'
+import { REST, Routes } from 'discord.js'
 
 const commands = [
     {
-        name: 'add',
-        description: 'Adds two numbers',
-        options: [
-            {
-                name: 'first-number',
-                description: 'The first number',
-                type: ApplicationCommandOptionType.Number,
-                required: true,
-            },
-            {
-                name: 'second-number',
-                description: 'The second number',
-                type: ApplicationCommandOptionType.Number,
-                required: true,
-            },
-        ]
-    },
+        name: 'meme',
+        description: 'Replies with a meme from r/memes'
+    }
 ];
 
 const rest = new REST({ version: '10' }).setToken(Bun.env.TOKEN as string);
