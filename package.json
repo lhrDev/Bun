@@ -1,7 +1,10 @@
 {
-  "name": "bun-dev",
-  "module": "index.ts",
+  "name": "bot-discord",
+  "module": "src/index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun --watch run src/index.ts"
+  },
   "devDependencies": {
     "bun-types": "latest"
   },
@@ -9,7 +12,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "discord.js": "^14.13.0",
-    "ytdl-core": "^4.11.5"
+    "discord.js": "^14.13.0"
   }
 }
